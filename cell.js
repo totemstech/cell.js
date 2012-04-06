@@ -77,7 +77,7 @@ CELL.cell = function(spec, my) {
   var bind;      /* bind();        */
 
 
-  var that = emitter({});
+  var that = CELL.emitter({});
 
 
   /**
