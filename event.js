@@ -104,11 +104,11 @@ CELL.emitter = function(spec, my) {
   };
 
 
-  method(that, 'on', on, _super);
-  method(that, 'emit', emit, _super);
-  method(that, 'off', off, _super);
+  CELL.method(that, 'on', on, _super);
+  CELL.method(that, 'emit', emit, _super);
+  CELL.method(that, 'off', off, _super);
   
-  getter(that, 'handlers', my, 'handlers');
+  CELL.getter(that, 'handlers', my, 'handlers');
   
   return that;
 };

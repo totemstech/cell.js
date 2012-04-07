@@ -159,14 +159,14 @@ CELL.cell = function(spec, my) {
   };
 
 
-  method(that, 'init', init, _super);
-  method(that, 'render', render, _super);
-  method(that, 'find', find, _super);
+  CELL.method(that, 'build', build, _super);
+  CELL.method(that, 'refresh', refresh, _super);
+  CELL.method(that, 'find', find, _super);
 
-  getter(that, 'children', my, 'children');
-  getter(that, 'element', my, 'element');
-  getter(that, 'path', my, 'path');
-  getter(that, 'json', my, 'json');
+  CELL.getter(that, 'children', my, 'children');
+  CELL.getter(that, 'element', my, 'element');
+  CELL.getter(that, 'path', my, 'path');
+  CELL.getter(that, 'json', my, 'json');
 
   return that;
 
