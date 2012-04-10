@@ -148,14 +148,14 @@ CELL.cell = function(spec, my) {
    * @return the cell under 'path'
    */
   find = function(path) {
-    var comps = path.split('/');
-    
-    if(comps.length === 0)
-      return that;
-    else {
-      var next = comps.shift();
+    path = path.replace(/^\/+/, '');
+    var comps = path.split('/');    
+    var next = comps.shift();
+
+    if(next.length > 0)
       return my.children[next].find(comps.join('/'));
-    }
+    else
+      return that;
   };
 
 
