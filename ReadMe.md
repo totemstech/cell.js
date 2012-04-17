@@ -1,4 +1,4 @@
-### More stuff is not always the Right Stuff
+### Simple Hierarchical Rendering Web Framework
 
 `cell.js` provides a light web framework to help keep javascript UI code structured and modular. The framework has a few basic functions to provide functional inheritance (as defined in the Crockford) [base.js] and a base `emitter` class [events.js] to add to objects the ability to bind and emit events. The framework is based on a very simple class called `cell` which helps developpers structure their UI in a hierarchical manner that helps modularity and reusability. 
 
