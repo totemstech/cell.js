@@ -51,7 +51,9 @@ CELL.container = function(spec, my) {
   // public
   var find;      /* find(path);    */
 
-  // private
+  // protected
+  var construct; /* construct();   */
+
 
   var that = CELL.emitter({});
 
@@ -73,11 +75,22 @@ CELL.container = function(spec, my) {
       return that;
   };
 
+
+  /**
+   * Builds the cells hierarchies handled by that container and load
+   * them within the DOM
+   */
+  load = function() {
+    // children class implementation specific
+  };
+
+
+
   CELL.method(that, 'find', find, _super);
+  CELL.method(that, 'load', load, _super);
 
   CELL.getter(that, 'children', my, 'children');
   CELL.getter(that, 'name', my, 'name');
 
   return that;
-
 };
