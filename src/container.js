@@ -66,19 +66,15 @@ CELL.container = function(spec, my) {
 
   /**
    * RECURSIVE FUNCTION
-   * Recursively refreshes the elements children. refresh should be implemented
-   * and `_super.refresh()` called when suited. The refresh function must be in
-   * charge of updating the UI with the updated json data passed recursively.
-   * @param data the update data to use to refresh the UI
+   * Recursively refreshes the children cells. refresh should be implemented
+   * and `_super.refresh()` called when suited. `my.json` must be set with the
+   * correct compatible architecture before a call to refresh
    */
-  refresh = function(json) {
-    if(typeof json !== 'undefined')
-      my.json = json;
-
+  refresh = function() {
     for(var c in my.children) {
       if(my.children.hasOwnProperty(c) && 
          typeof my.json[c] !== 'undefined')
-        my.children[c].refresh(json[c]);
+        my.children[c].refresh(my.json[c]);
     }
   };
 
