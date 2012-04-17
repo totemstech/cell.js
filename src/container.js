@@ -49,14 +49,14 @@ CELL.container = function(spec, my) {
   var _super = {};
   var my = my || {};
 
-  my.name = spec.name || '/';      /* the container name */
+  my.name = spec.name || '';       /* the container name */
   my.children = {};                /* cell children, created at build time */
 
   // public
   var find;      /* find(path);    */
 
   // protected
-  var construct; /* construct();   */
+  var load;      /* load();   */
 
 
   var that = CELL.emitter({});

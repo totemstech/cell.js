@@ -104,6 +104,8 @@ CELL.method = function(that, name, method, _super) {
   if(_super) {
     var m = that[name];
     _super[name] = function() {
+      if(typeof m !== 'function') 
+        throw new Error('_super.' + name + '() is not a function');
       return m.apply(that, arguments);
     };
   }
