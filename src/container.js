@@ -99,10 +99,11 @@ CELL.container = function(spec, my) {
 
   /**
    * Builds the cells hierarchies handled by that container and load
-   * them within the DOM.
+   * them within the DOM. Implementation specific to container and its
+   * children cells
    */
   load = function() {
-    // children class implementation specific
+    throw new Error('`build` must be implemented : ' + my.path);
   };
 
 
