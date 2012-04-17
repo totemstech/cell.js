@@ -103,7 +103,7 @@ CELL.container = function(spec, my) {
    * children cells
    */
   load = function() {
-    throw new Error('`build` must be implemented : ' + my.path);
+    throw new Error('`load` must be implemented : ' + my.path);
   };
 
 
