@@ -64,8 +64,8 @@ CELL.cell = function(spec, my) {
 
   my.element = null;               /* stores the HTML element handled by this cell */
   my.path = spec.path || '/';      /* the current cell path */
-  my.children = {};                /* cell children, created at build time */
-  my.json = {};                    /* cell json, always up to date */
+  my.children = my.children || {}; /* cell children, created at build time */
+  my.json = my.json || {};         /* cell json, always up to date */
 
 
   // public
