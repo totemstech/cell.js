@@ -62,11 +62,13 @@ CELL.cell = function(spec, my) {
   var _super = {};
   var my = my || {};
 
-  my.element = null;               /* stores the HTML element handled by this cell */
   my.path = spec.path || '/';      /* the current cell path */
+  my.container = spec.container;   /* the top level container */
+
   my.children = my.children || {}; /* cell children, created at build time */
   my.json = my.json || {};         /* cell json, always up to date */
-  my.container = spec.container;   /* the top level container */
+
+  my.element = null;               /* stores the HTML element handled by this cell */
 
   // public
   var build;     /* build();       */
@@ -134,8 +136,9 @@ CELL.cell = function(spec, my) {
     my.json = json;
 
     for(var c in my.children) {
-      if(my.children.hasOwnProperty(c))
-        my.children[c].refresh(json[c]);
+      if(my.children.hasOwnProperty(c) && 
+         typeof my.json[c] !== 'undefined')
+        my.children[c].refresh(my.json[c]);
     }
     bind();
   };

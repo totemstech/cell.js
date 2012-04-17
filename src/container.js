@@ -50,16 +50,37 @@ CELL.container = function(spec, my) {
   var my = my || {};
 
   my.name = spec.name || '';       /* the container name */
-  my.children = {};                /* cell children, created at build time */
+
+  my.children = my.children || {}; /* container children, created at build time */
+  my.json = my.json || {};         /* container json */
 
   // public
   var find;      /* find(path);    */
 
   // protected
-  var load;      /* load();   */
+  var load;      /* load();    */
+  var refresh;   /* refresh(); */
 
 
   var that = CELL.emitter({});
+
+  /**
+   * RECURSIVE FUNCTION
+   * Recursively refreshes the elements children. refresh should be implemented
+   * and `_super.refresh()` called when suited. The refresh function must be in
+   * charge of updating the UI with the updated json data passed recursively.
+   * @param data the update data to use to refresh the UI
+   */
+  refresh = function(json) {
+    if(typeof json !== 'undefined')
+      my.json = json;
+
+    for(var c in my.children) {
+      if(my.children.hasOwnProperty(c) && 
+         typeof my.json[c] !== 'undefined')
+        my.children[c].refresh(json[c]);
+    }
+  };
 
   /**
    * RECURSIVE FUNCTION
@@ -90,11 +111,13 @@ CELL.container = function(spec, my) {
 
 
 
-  CELL.method(that, 'find', find, _super);
   CELL.method(that, 'load', load, _super);
+  CELL.method(that, 'refresh', refresh, _super);
+  CELL.method(that, 'find', find, _super);
 
   CELL.getter(that, 'children', my, 'children');
   CELL.getter(that, 'name', my, 'name');
+  CELL.getter(that, 'json', my, 'json');
 
   return that;
 };
