@@ -29,17 +29,21 @@ if(typeof CELL === 'undefined')
 /**
  * Container object
  * 
- * The `container` is the TOP level object which contains all
- * the children cells
- *
- * In charge of exchange with server, it builds the JSON data 
- * architecture that will be splited between different cells
+ * The `container` is the TOP level object which contains a set of children 
+ * cells. The container is passed to all the cell within the hierarchy and
+ * is therefore referenceable from any cell within one of its hierarchies.
+ * The container is in charge of loading a builded hierachy within the DOM
+ * in the `load` function. All events emitted by cells are forwarded up to
+ * the top-level cells and can be listened by the container. Finally the
+ * container is supposed to act as a controller between the views (cell
+ * hierarchies) and its data representation. This data representation is
+ * built to be compatbile with cell refresh and splitted across cells. When 
+ * the data model it handles is updated, refresh should be called on the
+ * children cells.
  *
  * @extends CELL.emitter
  *
- * @emits 'update'
- *
- * @param spec {path}
+ * @param spec {name}
  */
 CELL.container = function(spec, my) {
   var _super = {};
@@ -78,7 +82,7 @@ CELL.container = function(spec, my) {
 
   /**
    * Builds the cells hierarchies handled by that container and load
-   * them within the DOM
+   * them within the DOM.
    */
   load = function() {
     // children class implementation specific
