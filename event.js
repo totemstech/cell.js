@@ -89,6 +89,13 @@ CELL.emitter = function(spec, my) {
           my.handlers[name][i].apply(this, args);
       }
     }
+    if(my.handlers['*']) {
+      args.unshift(name);
+      for(var i = 0; i < my.handlers[name].length; i++) {
+        if(my.handlers[name][i])
+          my.handlers[name][i].apply(this, args);
+      }
+    }
   };
 	
   /**

@@ -56,7 +56,7 @@ if(typeof CELL === 'undefined')
  *
  * @emits 'update'
  *
- * @param spec {path}
+ * @param spec {path, container}
  */
 CELL.cell = function(spec, my) {
   var _super = {};
@@ -66,7 +66,7 @@ CELL.cell = function(spec, my) {
   my.path = spec.path || '/';      /* the current cell path */
   my.children = {};                /* cell children, created at build time */
   my.json = {};                    /* cell json, always up to date */
-
+  my.container = spec.container;   /* the top level container */
 
   // public
   var build;     /* build();       */
@@ -95,7 +95,7 @@ CELL.cell = function(spec, my) {
      */       
     my.element = $('<div></div>');
 
-    my.children['foo'] = foocell({path: my.path + '/foo'});
+    my.children['foo'] = foocell({path: my.path + '/foo', container: my.container}, my);
     my.element.append(my.children['foo'].build());
 
     return my.element;
@@ -109,14 +109,15 @@ CELL.cell = function(spec, my) {
    */
   bind = function() {
     my.hdlr = my.hdl || 
-      function(path) {
-        that.emit('update', path);
+      function() {
+        var args = Array.prototype.slice.call(arguments);
+        that['emit'].apply(this, args);
       };
 
     for(var c in my.children) {
       if(my.children.hasOwnProperty(c)) {
-        my.children[c].off('update', my.hdlr);
-        my.children[c].on('update', my.hdlr);
+        my.children[c].off('*', my.hdlr);
+        my.children[c].on('*', my.hdlr);
       }
     }
   };
