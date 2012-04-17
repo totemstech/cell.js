@@ -104,10 +104,12 @@ CELL.emitter = function(spec, my) {
    * @param handler {Function} the handler
    */
   off = function(type, handler) {
-    for(var i = my.handlers[type].length - 1; i >= 0; i--) {
-      if(handler === my.handlers[type][i]) 
-        my.handlers[type].splice(i, 1);        
-    }    
+    if(my.handlers[type]) {
+      for(var i = my.handlers[type].length - 1; i >= 0; i--) {
+        if(handler === my.handlers[type][i]) 
+          my.handlers[type].splice(i, 1);        
+      }    
+    }
   };
 
 
