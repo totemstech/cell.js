@@ -4,7 +4,9 @@
 
 The concept of cells is largely inspired by the work introduced by Google in its GWT framework [http://google-web-toolkit.googlecode.com/svn/javadoc/2.1/com/google/gwt/cell/client/Cell.html]
 
-#### Basic Cell
+Below are the basic forms of a `container` and a `cell` that can be used as skeleton structures when using `cell.js`
+
+#### Cell Base
 
 ```javascript
 /************************************/
@@ -47,7 +49,7 @@ var basic_c = function(spec, my) {
 };
 ```
 
-#### Basic Container
+#### Container Base
 
 ```javascript
 /************************************/
