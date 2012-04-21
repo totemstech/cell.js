@@ -142,3 +142,22 @@ CELL.setter = function(that, name, obj, prop) {
 CELL.responds = function(that, name) {
   return (that[name] && typeof that[name] === 'function');
 };
+
+/**
+ * log(data)
+ * Wrapper around console.log for compatiblity
+ */ 
+CELL.log = function() {
+  if(console && 
+     typeof console.log === 'function')
+    return console.log.apply(console, arguments);
+};
+
+
+CELL.DEBUG = false;
+
+CELL.debug = function() {
+  if(CELL.DEBUG && console &&
+     typeof console.log === 'function')
+    return console.log.apply(console, arguments);
+};
