@@ -97,7 +97,7 @@ CELL.cell = function(spec, my) {
      */       
     my.element = $('<div></div>');
 
-    my.children['foo'] = foocell({path: my.path + '/foo', container: my.container}, my);
+    my.children['foo'] = foo_c({path: my.path + '/foo', container: my.container});
     my.element.append(my.children['foo'].build());
 
     return my.element;
