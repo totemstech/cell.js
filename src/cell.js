@@ -110,7 +110,7 @@ CELL.cell = function(spec, my) {
    * refresh method.
    */
   bind = function() {
-    my.hdlr = my.hdl || 
+    my.hdlr = my.hdlr || 
       function() {
         var args = Array.prototype.slice.call(arguments);
         that['emit'].apply(this, args);
