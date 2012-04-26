@@ -47,7 +47,7 @@ if(typeof CELL === 'undefined')
  */
 CELL.container = function(spec, my) {
   var _super = {};
-  var my = my || {};
+  my = my || {};
 
   my.name = spec.name || '';       /* the container name */
 

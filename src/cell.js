@@ -60,7 +60,7 @@ if(typeof CELL === 'undefined')
  */
 CELL.cell = function(spec, my) {
   var _super = {};
-  var my = my || {};
+  my = my || {};
 
   my.path = spec.path || '/';      /* the current cell path */
   my.container = spec.container;   /* the top level container */
