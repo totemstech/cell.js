@@ -153,6 +153,19 @@ CELL.log = function() {
     return console.log.apply(console, arguments);
 };
 
+/** 
+ * remove(e)
+ * Removes the element e from the Array, using the JS '===' equality
+ */
+CELL.remove = function(that, e) {
+  "use strict";
+  
+  if(that === void 0 || that === null || !Array.isArray(that))
+    throw new TypeError();
+  
+  for(var i = that.length - 1; i >= 0; i--)
+    if(e === that[i]) that.splice(i, 1);        
+};
 
 CELL.DEBUG = false;
 
