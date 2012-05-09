@@ -82,7 +82,6 @@ CELL.emitter = function(spec, my) {
   emit = function() {
     var args = Array.prototype.slice.call(arguments);
     var name = args.shift();
-    
     if(my.handlers[name]) {
       for(var i = 0; i < my.handlers[name].length; i++) {
         if(my.handlers[name][i])
@@ -91,9 +90,9 @@ CELL.emitter = function(spec, my) {
     }
     if(my.handlers['*']) {
       args.unshift(name);
-      for(var i = 0; i < my.handlers[name].length; i++) {
-        if(my.handlers[name][i])
-          my.handlers[name][i].apply(this, args);
+      for(var i = 0; i < my.handlers['*'].length; i++) {
+        if(my.handlers['*'][i])
+          my.handlers['*'][i].apply(this, args);
       }
     }
   };
@@ -106,8 +105,9 @@ CELL.emitter = function(spec, my) {
   off = function(type, handler) {
     if(my.handlers[type]) {
       for(var i = my.handlers[type].length - 1; i >= 0; i--) {
-        if(handler === my.handlers[type][i]) 
+        if(handler === my.handlers[type][i]) {
           my.handlers[type].splice(i, 1);        
+        }
       }    
     }
   };

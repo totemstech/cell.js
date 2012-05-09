@@ -79,7 +79,7 @@ CELL.cell = function(spec, my) {
   var bind;      /* bind();        */
 
 
-  var that = CELL.emitter({});
+  var that = CELL.emitter({}, my);
 
 
   /**
@@ -166,6 +166,7 @@ CELL.cell = function(spec, my) {
   CELL.method(that, 'build', build, _super);
   CELL.method(that, 'refresh', refresh, _super);
   CELL.method(that, 'find', find, _super);
+  CELL.method(that, 'bind', bind, _super);
 
   CELL.getter(that, 'children', my, 'children');
   CELL.getter(that, 'element', my, 'element');
