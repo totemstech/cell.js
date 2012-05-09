@@ -167,6 +167,31 @@ CELL.remove = function(that, e) {
     if(e === that[i]) that.splice(i, 1);        
 };
 
+/**
+ * unique()
+ * Returns a new array by removing duplicate elements
+ * using the JS '===' equality
+ */
+CELL.unique = function(that) {
+  "use strict";
+  
+  if(that === void 0 || that === null || !Array.isArray(that))
+    throw new TypeError();
+  
+  var a = that.concat();
+  for(var i = 0; i < a.length; i++) {
+    for(var j = i+1; j < a.length; j++) {
+      if(a[i] === a[j]) {
+        a.splice(j, 1);
+        j--;
+      }
+    }
+  }
+  return a;
+};
+
+
+
 CELL.DEBUG = false;
 
 CELL.debug = function() {
