@@ -60,6 +60,7 @@ CELL.container = function(spec, my) {
   // protected
   var load;      /* load();    */
   var refresh;   /* refresh(); */
+  var batch;     /* batch(fn, params); */
 
 
   var that = CELL.emitter({});
@@ -106,11 +107,33 @@ CELL.container = function(spec, my) {
     throw new Error('`load` must be implemented : ' + my.path);
   };
 
+  /**
+   * Calls the given function for every children.
+   * @param fn can be a string representing the function name
+   *           or a function(child, params)
+   * @param params
+   */
+  batch = function() {
+    var args = Array.prototype.slice.call(arguments);
+    var fn = args.shift();
+
+    for(var c in my.children) {
+      if(my.children.hasOwnProperty(c)) {
+        if(typeof fn === 'string' && typeof my.children[c][fn] === 'function')
+          my.children[c][fn].apply(this, args);
+        else if(typeof fn === 'function') {
+          var child_args = [ my.children[c] ].concat(args);
+          fn.apply(this, child_args);
+        }
+      } 
+    }
+  };
 
 
   CELL.method(that, 'load', load, _super);
   CELL.method(that, 'refresh', refresh, _super);
   CELL.method(that, 'find', find, _super);
+  CELL.method(that, 'batch', batch, _super);
 
   CELL.getter(that, 'children', my, 'children');
   CELL.getter(that, 'name', my, 'name');
