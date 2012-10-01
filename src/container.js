@@ -119,8 +119,9 @@ CELL.container = function(spec, my) {
 
     for(var c in my.children) {
       if(my.children.hasOwnProperty(c)) {
-        if(typeof fn === 'string' && typeof my.children[c][fn] === 'function')
+        if(typeof fn === 'string' && typeof my.children[c][fn] === 'function') {
           my.children[c][fn].apply(this, args);
+        }
         else if(typeof fn === 'function') {
           var child_args = [ my.children[c] ].concat(args);
           fn.apply(this, child_args);
