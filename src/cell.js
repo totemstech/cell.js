@@ -157,8 +157,12 @@ CELL.cell = function(spec, my) {
     var comps = path.split('/');    
     var next = comps.shift();
 
-    if(next.length > 0)
-      return my.children[next].find(comps.join('/'));
+    if(next.length > 0) {
+      if(my.children[next])
+        return my.children[next].find(comps.join('/'));
+      else
+        return null;
+    }
     else
       return that;
   };
