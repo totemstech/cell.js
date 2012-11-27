@@ -152,6 +152,7 @@ CELL.cell = function(spec, my) {
    * @return the cell under 'path'
    */
   find = function(path) {
+    CELL.debug(my.path + ' find ' + path);
     path = path.replace(/^\/+/, '');
     var comps = path.split('/');    
     var next = comps.shift();
